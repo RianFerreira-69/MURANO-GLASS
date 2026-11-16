@@ -458,7 +458,9 @@ p { margin: 0; }
   display: block;
 }
 .shot__img {
+  display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: var(--radius-xl);
@@ -479,6 +481,8 @@ p { margin: 0; }
 }
 .lightbox[hidden] { display: none; }
 .lightbox__img {
+  width: auto;
+  height: auto;
   max-height: 78vh;
   max-width: 94vw;
   border-radius: var(--radius-input);
