@@ -1,0 +1,26 @@
+# Murano Glass - configuração do Netlify
+# Site estático: não precisa de build. Publique arrastando esta pasta no Netlify.
+# O formulário "orcamento" é detectado automaticamente pelo HTML (data-netlify="true").
+
+[build]
+  publish = "."
+
+# Segurança em todas as páginas
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=31536000"
+    # 'unsafe-inline' em script-src é necessário para o snippet inline do Meta Pixel no <head>.
+    # Se você trocar de Pixel/domínio de anúncios, revise as origens do Facebook abaixo.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.facebook.com; connect-src 'self' https://www.facebook.com https://*.facebook.com https://*.facebook.net; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'"
+
+# Fotos: cache longo (1 ano). Se trocar uma foto, use um NOME NOVO de arquivo
+# (ex.: foto-1-v2.webp), senão quem já visitou pode continuar vendo a antiga.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
