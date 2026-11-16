@@ -65,24 +65,21 @@ fbq('track', 'PageView');
 </div>
 <div id="orcamento-topo"><div class="form-card">
 <h2 class="form-card__title" data-form-title>Peça seu orçamento grátis</h2>
-<form class="quote-form" name="orcamento" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate data-quote-form>
-<input type="hidden" name="form-name" value="orcamento">
-<p class="form-honeypot" hidden><label>Não preencha este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<form class="quote-form" name="orcamento" novalidate data-quote-form>
 <div class="quote-form__fields">
 <div class="form-field"><label for="nome-a">Nome</label><input id="nome-a" name="nome" type="text" required autocomplete="name" aria-describedby="erro-nome-a"><p class="form-field__error" id="erro-nome-a" hidden></p></div>
 <div class="form-field"><label for="zap-a">WhatsApp</label><input id="zap-a" name="whatsapp" type="text" inputmode="tel" data-phone-mask required autocomplete="tel-national" placeholder="(16) 99999-9999" pattern="\(\d{2}\) \d{4,5}-\d{4}" title="Digite DDD e número, ex.: (16) 99999-9999" aria-describedby="erro-zap-a"><p class="form-field__error" id="erro-zap-a" hidden></p></div>
 <div class="form-field"><label for="prod-a">O que você precisa</label><select id="prod-a" name="produto" required aria-describedby="erro-prod-a"><option value="" selected disabled>Escolha uma opção</option><option>Box de banheiro</option><option>Porta de 1 folha</option><option>Porta de 2 folhas</option><option>Porta de 3 folhas</option><option>Porta de 4 folhas</option><option>Porta Stanley</option><option>Janelas e basculantes</option><option>Churrasqueira</option><option>Cobertura</option><option>Envidraçamento</option><option>Guarda-corpo</option><option>Outro item em vidro</option></select><p class="form-field__error" id="erro-prod-a" hidden></p></div>
 <div class="form-field"><label for="cid-a">Cidade</label><input id="cid-a" name="cidade" type="text" required list="cidades-a" autocomplete="address-level2" placeholder="Ex.: Franca" aria-describedby="erro-cid-a"><datalist id="cidades-a"><option value="Franca"></datalist><p class="form-field__error" id="erro-cid-a" hidden></p></div>
-<div class="form-field"><label for="obs-a">Observações ou medidas aproximadas <span class="form-field__optional">(opcional)</span></label><textarea id="obs-a" name="observacoes"></textarea></div>
+<div class="form-field"><label for="obs-a">Observações ou o serviço exato que você deseja <span class="form-field__optional">(opcional)</span></label><textarea id="obs-a" name="observacoes"></textarea></div>
 <button class="btn btn--yellow" type="submit">Quero meu orçamento</button>
 <p class="form-consent">Ao enviar, você concorda em ser contatado pela Murano Glass sobre este orçamento.</p>
 <p class="form-error" role="alert" hidden data-form-error></p>
 </div>
 </form>
 <div class="form-thanks" hidden data-form-thanks>
-<h3 class="form-thanks__title" tabindex="-1">Recebemos seu pedido! Para agilizar, continue pelo WhatsApp:</h3>
-<p class="muted" hidden data-thanks-note>Não conseguimos registrar o formulário agora, mas você não perde nada: é só continuar pelo WhatsApp.</p>
-<a class="btn btn--whatsapp" href="#" target="_blank" rel="noopener" data-thanks-wa>Continuar no WhatsApp</a>
+<h3 class="form-thanks__title" tabindex="-1">Falta só um passo! Envie seu pedido pelo WhatsApp. Se ele não abriu, toque no botão:</h3>
+<a class="btn btn--whatsapp" href="#" target="_blank" rel="noopener" data-thanks-wa>Enviar pelo WhatsApp</a>
 </div>
 </div></div>
 </section>
@@ -250,24 +247,21 @@ fbq('track', 'PageView');
 </div>
 <div><div class="form-card">
 <h2 class="form-card__title" data-form-title>Peça seu orçamento grátis</h2>
-<form class="quote-form" name="orcamento" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" novalidate data-quote-form>
-<input type="hidden" name="form-name" value="orcamento">
-<p class="form-honeypot" hidden><label>Não preencha este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<form class="quote-form" name="orcamento" novalidate data-quote-form>
 <div class="quote-form__fields">
 <div class="form-field"><label for="nome-b">Nome</label><input id="nome-b" name="nome" type="text" required autocomplete="name" aria-describedby="erro-nome-b"><p class="form-field__error" id="erro-nome-b" hidden></p></div>
 <div class="form-field"><label for="zap-b">WhatsApp</label><input id="zap-b" name="whatsapp" type="text" inputmode="tel" data-phone-mask required autocomplete="tel-national" placeholder="(16) 99999-9999" pattern="\(\d{2}\) \d{4,5}-\d{4}" title="Digite DDD e número, ex.: (16) 99999-9999" aria-describedby="erro-zap-b"><p class="form-field__error" id="erro-zap-b" hidden></p></div>
 <div class="form-field"><label for="prod-b">O que você precisa</label><select id="prod-b" name="produto" required aria-describedby="erro-prod-b"><option value="" selected disabled>Escolha uma opção</option><option>Box de banheiro</option><option>Porta de 1 folha</option><option>Porta de 2 folhas</option><option>Porta de 3 folhas</option><option>Porta de 4 folhas</option><option>Porta Stanley</option><option>Janelas e basculantes</option><option>Churrasqueira</option><option>Cobertura</option><option>Envidraçamento</option><option>Guarda-corpo</option><option>Outro item em vidro</option></select><p class="form-field__error" id="erro-prod-b" hidden></p></div>
 <div class="form-field"><label for="cid-b">Cidade</label><input id="cid-b" name="cidade" type="text" required list="cidades-b" autocomplete="address-level2" placeholder="Ex.: Franca" aria-describedby="erro-cid-b"><datalist id="cidades-b"><option value="Franca"></datalist><p class="form-field__error" id="erro-cid-b" hidden></p></div>
-<div class="form-field"><label for="obs-b">Observações ou medidas aproximadas <span class="form-field__optional">(opcional)</span></label><textarea id="obs-b" name="observacoes"></textarea></div>
+<div class="form-field"><label for="obs-b">Observações ou o serviço exato que você deseja <span class="form-field__optional">(opcional)</span></label><textarea id="obs-b" name="observacoes"></textarea></div>
 <button class="btn btn--yellow" type="submit">Quero meu orçamento</button>
 <p class="form-consent">Ao enviar, você concorda em ser contatado pela Murano Glass sobre este orçamento.</p>
 <p class="form-error" role="alert" hidden data-form-error></p>
 </div>
 </form>
 <div class="form-thanks" hidden data-form-thanks>
-<h3 class="form-thanks__title" tabindex="-1">Recebemos seu pedido! Para agilizar, continue pelo WhatsApp:</h3>
-<p class="muted" hidden data-thanks-note>Não conseguimos registrar o formulário agora, mas você não perde nada: é só continuar pelo WhatsApp.</p>
-<a class="btn btn--whatsapp" href="#" target="_blank" rel="noopener" data-thanks-wa>Continuar no WhatsApp</a>
+<h3 class="form-thanks__title" tabindex="-1">Falta só um passo! Envie seu pedido pelo WhatsApp. Se ele não abriu, toque no botão:</h3>
+<a class="btn btn--whatsapp" href="#" target="_blank" rel="noopener" data-thanks-wa>Enviar pelo WhatsApp</a>
 </div>
 </div></div>
 </div>

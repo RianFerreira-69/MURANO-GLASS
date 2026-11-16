@@ -432,7 +432,6 @@ p { margin: 0; }
   color: var(--c-muted);
   line-height: 1.45;
 }
-.form-honeypot { display: none; }
 
 .form-thanks {
   display: flex;

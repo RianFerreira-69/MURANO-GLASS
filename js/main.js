@@ -9,10 +9,6 @@
   /* ---------- configuração ---------- */
   const WHATSAPP_NUMBER = '5516993257274';
   const SCROLL_VIEWCONTENT_RATIO = 0.5;
-  const FORM_ENDPOINT = '/';
-  const LABELS = {
-    sending: 'Enviando...',
-  };
   const ERROR_MESSAGES = {
     nome: { valueMissing: 'Informe seu nome.' },
     whatsapp: {
@@ -75,8 +71,7 @@
   }
 
   /* ---------- formulário de orçamento ----------
-     Envio via fetch para o Netlify Forms. O e-mail de destino é configurado no painel
-     do Netlify (Forms > Form notifications), não aqui no HTML. */
+     Sem backend: ao enviar, abre o WhatsApp da Murano Glass com os dados já escritos. */
   function getFieldError(field) {
     const messages = ERROR_MESSAGES[field.name];
     if (!messages) { return ''; }
@@ -108,39 +103,38 @@
     return invalidFields;
   }
 
-  function showThanks(form, whatsappUrl, failed) {
+  function showThanks(form, whatsappUrl) {
     const card = form.parentNode;
     const thanks = card.querySelector('[data-form-thanks]');
     form.hidden = true;
     card.querySelector('[data-form-title]').hidden = true;
     thanks.hidden = false;
     thanks.querySelector('[data-thanks-wa]').href = whatsappUrl;
-    thanks.querySelector('[data-thanks-note]').hidden = !failed;
     thanks.querySelector('h3').focus();
   }
 
-  function sendForm(form) {
-    return fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form)).toString(),
-    }).then(function (response) {
-      if (!response.ok) { throw new Error('status ' + response.status); }
-    });
+  /* Mensagem com tudo o que a pessoa preencheu, pronta para a Murano Glass ler no WhatsApp */
+  function buildQuoteMessage(data) {
+    const lines = [
+      'Olá! Vim pela página da Murano Glass e quero um orçamento sem compromisso (Black Friday).',
+      '',
+      'Nome: ' + data.name,
+      'WhatsApp: ' + data.phone,
+      'Serviço: ' + data.product,
+      'Cidade: ' + data.city,
+    ];
+    if (data.notes) { lines.push('Observações: ' + data.notes); }
+    return lines.join('\n');
   }
 
   function setupQuoteForm(form) {
     const summary = form.querySelector('[data-form-error]');
-    const submitButton = form.querySelector('button[type=submit]');
     let isSending = false;
 
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       if (isSending) { return; }
       summary.hidden = true;
-
-      /* honeypot preenchido: é robô, ignora em silêncio */
-      if (form.querySelector('[name=bot-field]').value) { return; }
 
       const invalidFields = validateForm(form);
       if (invalidFields.length > 0) {
@@ -150,28 +144,21 @@
         return;
       }
 
-      const name = form.nome.value.trim();
       const product = form.produto.value;
       const city = form.cidade.value.trim();
-      const whatsappUrl = buildWhatsappUrl(
-        'Olá! Sou ' + name + ', da cidade de ' + city + '. Quero um orçamento de ' + product + '. Vim pela página da Murano Glass.'
-      );
+      const whatsappUrl = buildWhatsappUrl(buildQuoteMessage({
+        name: form.nome.value.trim(),
+        phone: form.whatsapp.value.trim(),
+        product: product,
+        city: city,
+        notes: form.observacoes.value.trim(),
+      }));
 
-      isSending = true;
-      submitButton.disabled = true;
-      submitButton.textContent = LABELS.sending;
-
-      sendForm(form)
-        .then(function () {
-          /* Lead só dispara aqui, no envio com sucesso */
-          track('Lead', { content_name: product, content_category: city });
-          showThanks(form, whatsappUrl, false);
-        })
-        .catch(function () {
-          /* Falhou o envio: não perde o lead, abre o WhatsApp com a mensagem pronta (sem Lead) */
-          showThanks(form, whatsappUrl, true);
-          try { window.open(whatsappUrl, '_blank', 'noopener'); } catch (error) { /* popup bloqueado */ }
-        });
+      isSending = true; /* impede envio duplo */
+      /* Lead: formulário válido enviado (a conversa segue no WhatsApp) */
+      track('Lead', { content_name: product, content_category: city });
+      showThanks(form, whatsappUrl);
+      try { window.open(whatsappUrl, '_blank', 'noopener'); } catch (error) { /* popup bloqueado: o botão da tela de agradecimento abre o WhatsApp */ }
     });
 
     /* limpa o erro do campo assim que a pessoa volta a digitar */

@@ -1,6 +1,6 @@
 # Murano Glass - configuração do Netlify
 # Site estático: não precisa de build. Publique arrastando esta pasta no Netlify.
-# O formulário "orcamento" é detectado automaticamente pelo HTML (data-netlify="true").
+# O formulário não usa backend: ao enviar, abre o WhatsApp com os dados preenchidos.
 
 [build]
   publish = "."
