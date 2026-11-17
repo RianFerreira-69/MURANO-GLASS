@@ -627,3 +627,17 @@ p { margin: 0; }
     border-radius: var(--radius-3xl);
   }
 }
+
+/* ---------- prova visual no topo (fotos antes do formulário) ---------- */
+.hero__proof {
+  order: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+#orcamento-topo { order: 2; }
+.hero__proof .shot__caption { font-size: 14px; }
+@media (min-width: 1000px) {
+  .hero__proof { order: 3; grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
+  #orcamento-topo { order: 0; }
+}
